@@ -1,0 +1,181 @@
+// cmd ki warnings ya errors dekhna ka lia
+show warnings;
+show errors;
+
+
+//  cmd ma database ma kam karna ka lia
+cd../..
+cd xampp/mysql/bin
+mysql -u root -p -h localhost
+enter
+
+
+// all database dekhna ka lia 
+show databases;
+
+
+// database create karna ka lia
+create database [name];
+
+
+// database delete karna ka lia 
+drop database [name];
+
+
+// kisi databse ko use karna ka lia
+use [name];
+
+
+// apna current database dekhna ka lia ka ap konsa database use kar raha ho 
+select database();
+
+
+// database ma table create karna ka lia  ||  is ka lia use database lazmi ha  
+create table [ name 
+ (
+    name varchar(55),
+    age int
+ );
+]
+
+
+// tables dekhna ka lia 
+show tables;
+
+
+// table ki detail dekhna ka lia 
+desc [name]
+
+
+// table ma kuch insert karna matlab add karna
+insert into [name]
+(id, name, class)
+values (1, example, 2);
+
+
+// table ma koi unique cheez add karna ka lia matlab uniqued id create karna ka lia
+CREATE TABLE [name]
+(
+   stud_id INT NOT NULL 
+   ,name VARCHAR(55)
+   ,age INT
+   ,PRIMARY KEY (stud_id)
+);
+
+
+//////   CRUD   //////
+
+create table students(
+   id int not null auto_increment,
+   fname varchar(55),
+   lname varchar(55),
+   age int,
+   primary key(id)
+   );
+
+
+// Create
+
+insert into students (fname, lname, age) values
+   ('bilal', 'raza', 18),
+   ('vinod', 'bahadur', 25),
+   ('kamil', 'balti', 28),
+   ('owais', 'warsi', 27),
+   ('jawwad', 'turabi', 26),
+   ('hammad', 'khan', 18),
+   ('muhammad', 'raheel', 22),
+   ('hashim', 'pario', 28),
+   ('abdul', 'raheem', 25),
+   ('muhammad', 'farhan', 27);
+     
+
+// Read 
+
+select * from [ name ];
+select fname from [ name ];
+
+// read ma ya dekhna ka lia jis ki age 25 ha us ka data show ho 
+
+select * from [ name ] where age = 25;
+select fname from [ name ] where age = 25;
+
+
+// Update
+
+// table name ma jis table ma data update karna ha us table ka name set ma jis title ko
+// update karna ha us ka name and value ma new value add karnin ha 
+
+Example: update [ table name ] set [ title name ] = [ value ] where [ fname ] = [ 'user name' ]; 
+Code Example 1: update students set age = 19 where fname = 'hammad';
+Code Example 2: update students set age = 19 where id = 3;
+
+
+// Delete
+
+Example: delete from [ table name ] where [ fname ] = [ ' user name ' ]
+Code Example: delete from students where fname = 'bilal'; 
+
+// CRUD complete
+
+
+// details
+
+// ek tarah sa ya read hi ha lakin is ma ap define karta ho kia cheez chaiya wo aajata ha example name 
+// chaiya to complete name aagai ga and distinct add karna sa all dublicates name bhi ek bar hi likha aayenga
+// or is ma limit bhi add kar sakhta ha limit sa ya hoga ka agar limit 3 ha to start ka 3 anme aayenga
+
+Example: select [ item name ] from [ table name ] order by [ item name ];      
+
+Code Example: select fname from students order by fname;
+Code Example: select distinct fname from students order by fname;
+Code Example: select fname from students order by fname limit 3;
+Code Example: select * from students where fname in ('hammad', 'bilal');
+
+
+// searching
+
+// koi name yad nahi ha lakin us name ka 1 word yad ha uis sa user ka all names aagai ga
+
+Example: select [ name ] from [ table name ] where [ name ] like ['word%'];
+Code Example: select fname from students where fname like 'a%';
+
+
+// max, min, sum, count and avg
+
+Code Example: select  max(fname) from students;
+Code Example: select  min(fname) from students;
+Code Example: select  sum(fname) from students;
+Code Example: select  count(fname) from students;
+Code Example: select  avg(fname) from students;
+
+
+// Equal, Not Equal, greater, less, between, not between and concat
+
+// between ya ka ham age select karta ha 22 and 25 to wo 22 sa 25 ka age ki all detail le ayega 
+
+Code Example: select * from students where age = 25;
+Code Example: select * from students where age = 25; 
+Code Example: select * from students where age > 25;
+Code Example: select * from students where age < 25;
+Code Example: select * from students where age between 22 and 25;
+Code Example: select * from students where age not bmetween 22 and 25;
+Code Example:  select concat(fname,' ', lname) from students as fullname;
+
+
+// curdate, curtime and now 
+
+Example: curdate(), curtime() and now()
+
+
+// refrences with date
+
+// cid int jo ha us ki jagah koi bhi name de sakhta ha lakin foreign key ma same name dena ha jo int ma ha wo 
+// or refrence ma jis table ka refrence dena ha us ka name and table ma jis chezz ka refrence dena ha us ka name
+
+Code Example: create table orders (oid int not null auto_increment primary key, orderdate date, cid int, foreign key(cid) refrences customers(cid) );
+
+
+// inner join 
+
+Example: select * from [ first table name ] , [ second table name ] where [ first table name.table title ] = [ second table name.table title]
+Code Example: select * from customers, orders where customers.cid = orders.cid;
